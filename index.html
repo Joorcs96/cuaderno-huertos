@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Huertos Carlos | Cuaderno de Campo & Faenas</title>
+  
+  <meta name="description" content="Gestión ágil de parcelas, partes de faenas, control de plagas y tratamientos agrícolas para el equipo de Carlos">
+  <meta name="theme-color" content="#15803d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <!-- Directivas de Ciberseguridad y Prevención de Fugas de Datos (CSP Estricto) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; font-src 'self'; worker-src 'self'; object-src 'none'; media-src 'none'; frame-src 'none'; child-src 'none'; form-action 'self'; base-uri 'self';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(self), payment=(), usb=()">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="styles.css?v=9">
+</head>
+<body>
+  <!-- Sprite de iconos SVG (Lucide, licencia ISC). Ver CREDITOS.md -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="sprite-iconos" aria-hidden="true" focusable="false"><defs><symbol id="ic-tractor" viewBox="0 0 24 24"><path d="m10 11 11 .9a1 1 0 0 1 .8 1.1l-.665 4.158a1 1 0 0 1-.988.842H20" />
+  <path d="M16 18h-5" />
+  <path d="M18 5a1 1 0 0 0-1 1v5.573" />
+  <path d="M3 4h8.129a1 1 0 0 1 .99.863L13 11.246" />
+  <path d="M4 11V4" />
+  <path d="M7 15h.01" />
+  <path d="M8 10.1V4" />
+  <circle cx="18" cy="18" r="2" />
+  <circle cx="7" cy="15" r="5" /></symbol><symbol id="ic-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+  <path d="M7 11V7a5 5 0 0 1 10 0v4" /></symbol><symbol id="ic-unlock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+  <path d="M7 11V7a5 5 0 0 1 9.9-1" /></symbol><symbol id="ic-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /></symbol><symbol id="ic-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+  <path d="m9 12 2 2 4-4" /></symbol><symbol id="ic-key" viewBox="0 0 24 24"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" />
+  <circle cx="16.5" cy="7.5" r=".5" fill="currentColor" /></symbol><symbol id="ic-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+  <circle cx="12" cy="7" r="4" /></symbol><symbol id="ic-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" /></symbol><symbol id="ic-clipboard" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+  <path d="M12 11h4" />
+  <path d="M12 16h4" />
+  <path d="M8 11h.01" />
+  <path d="M8 16h.01" /></symbol><symbol id="ic-note" viewBox="0 0 24 24"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" />
+  <path d="M2 6h4" />
+  <path d="M2 10h4" />
+  <path d="M2 14h4" />
+  <path d="M2 18h4" />
+  <path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" /></symbol><symbol id="ic-bolt" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" /></symbol><symbol id="ic-citrus" viewBox="0 0 24 24"><path d="M21.66 17.67a1.08 1.08 0 0 1-.04 1.6A12 12 0 0 1 4.73 2.38a1.1 1.1 0 0 1 1.61-.04z" />
+  <path d="M19.65 15.66A8 8 0 0 1 8.35 4.34" />
+  <path d="m14 10-5.5 5.5" />
+  <path d="M14 17.85V10H6.15" /></symbol><symbol id="ic-pen" viewBox="0 0 24 24"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+  <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" /></symbol><symbol id="ic-chart" viewBox="0 0 24 24"><line x1="12" x2="12" y1="20" y2="10" />
+  <line x1="18" x2="18" y1="20" y2="4" />
+  <line x1="6" x2="6" y1="20" y2="16" /></symbol><symbol id="ic-plus" viewBox="0 0 24 24"><path d="M5 12h14" />
+  <path d="M12 5v14" /></symbol><symbol id="ic-close" viewBox="0 0 24 24"><path d="M18 6 6 18" />
+  <path d="m6 6 12 12" /></symbol><symbol id="ic-chevrons" viewBox="0 0 24 24"><path d="m7 15 5 5 5-5" />
+  <path d="m7 9 5-5 5 5" /></symbol><symbol id="ic-warning" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+  <path d="M12 9v4" />
+  <path d="M12 17h.01" /></symbol><symbol id="ic-flask" viewBox="0 0 24 24"><path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2" />
+  <path d="M6.453 15h11.094" />
+  <path d="M8.5 2h7" /></symbol><symbol id="ic-bug" viewBox="0 0 24 24"><path d="m8 2 1.88 1.88" />
+  <path d="M14.12 3.88 16 2" />
+  <path d="M9 7.13v-1a3.003 3.003 0 1 1 6 0v1" />
+  <path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6" />
+  <path d="M12 20v-9" />
+  <path d="M6.53 9C4.6 8.8 3 7.1 3 5" />
+  <path d="M6 13H2" />
+  <path d="M3 21c0-2.1 1.7-3.9 3.8-4" />
+  <path d="M20.97 5c0 2.1-1.6 3.8-3.5 4" />
+  <path d="M22 13h-4" />
+  <path d="M17.2 17c2.1.1 3.8 1.9 3.8 4" /></symbol><symbol id="ic-mosca" viewBox="0 0 24 24"><path d="M16 7h.01" />
+  <path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20" />
+  <path d="m20 7 2 .5-2 .5" />
+  <path d="M10 18v3" />
+  <path d="M14 17.75V21" />
+  <path d="M7 18a6 6 0 0 0 3.84-10.61" /></symbol><symbol id="ic-polilla" viewBox="0 0 24 24"><path d="M9 10h.01" />
+  <path d="M15 10h.01" />
+  <path d="M12 2a8 8 0 0 0-8 8v12l3-3 2.5 2.5L12 19l2.5 2.5L17 19l3 3V10a8 8 0 0 0-8-8z" /></symbol><symbol id="ic-cucaracha" viewBox="0 0 24 24"><path d="M17 5c0-1.7-1.3-3-3-3s-3 1.3-3 3c0 .8.3 1.5.8 2H11c-3.9 0-7 3.1-7 7c0 2.2 1.8 4 4 4" />
+  <path d="M16.8 3.9c.3-.3.6-.5 1-.7 1.5-.6 3.3.1 3.9 1.6.6 1.5-.1 3.3-1.6 3.9l1.6 2.8c.2.3.2.7.2 1-.2.8-.9 1.2-1.7 1.1 0 0-1.6-.3-2.7-.6H17c-1.7 0-3 1.3-3 3" />
+  <path d="M13.2 18a3 3 0 0 0-2.2-5" />
+  <path d="M13 22H4a2 2 0 0 1 0-4h12" />
+  <path d="M16 9h.01" /></symbol><symbol id="ic-larva" viewBox="0 0 24 24"><path d="m19 12-1.5 3" />
+  <path d="M19.63 18.81 22 20" />
+  <path d="M6.47 8.23a1.68 1.68 0 0 1 2.44 1.93l-.64 2.08a6.76 6.76 0 0 0 10.16 7.67l.42-.27a1 1 0 1 0-2.73-4.21l-.42.27a1.76 1.76 0 0 1-2.63-1.99l.64-2.08A6.66 6.66 0 0 0 3.94 3.9l-.7.4a1 1 0 1 0 2.55 4.34z" /></symbol><symbol id="ic-sparkles" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+  <path d="M20 3v4" />
+  <path d="M22 5h-4" />
+  <path d="M4 17v2" />
+  <path d="M5 18H3" /></symbol><symbol id="ic-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+  <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" /></symbol><symbol id="ic-drop" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z" /></symbol><symbol id="ic-drop-alert" viewBox="0 0 24 24"><path d="M18.715 13.186C18.29 11.858 17.384 10.607 16 9.5c-2-1.6-3.5-4-4-6.5a10.7 10.7 0 0 1-.884 2.586" />
+  <path d="m2 2 20 20" />
+  <path d="M8.795 8.797A11 11 0 0 1 8 9.5C6 11.1 5 13 5 15a7 7 0 0 0 13.222 3.208" /></symbol><symbol id="ic-scissors" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3" />
+  <path d="M8.12 8.12 12 12" />
+  <path d="M20 4 8.12 15.88" />
+  <circle cx="6" cy="18" r="3" />
+  <path d="M14.8 14.8 20 20" /></symbol><symbol id="ic-wheat" viewBox="0 0 24 24"><path d="M2 22 16 8" />
+  <path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z" />
+  <path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z" />
+  <path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z" />
+  <path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z" />
+  <path d="M11.47 17.47 13 19l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L5 19l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z" />
+  <path d="M15.47 13.47 17 15l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L9 15l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z" />
+  <path d="M19.47 9.47 21 11l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L13 11l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z" /></symbol><symbol id="ic-eye" viewBox="0 0 24 24"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+  <circle cx="12" cy="12" r="3" /></symbol><symbol id="ic-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" />
+  <polyline points="12 6 12 12 16 14" /></symbol><symbol id="ic-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3" />
+  <path d="M3 5V19A9 3 0 0 0 21 19V5" />
+  <path d="M3 12A9 3 0 0 0 21 12" /></symbol><symbol id="ic-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+  <polyline points="7 10 12 15 17 10" />
+  <line x1="12" x2="12" y1="15" y2="3" /></symbol><symbol id="ic-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+  <polyline points="17 8 12 3 7 8" />
+  <line x1="12" x2="12" y1="3" y2="15" /></symbol><symbol id="ic-file-down" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M12 18v-6" />
+  <path d="m9 15 3 3 3-3" /></symbol><symbol id="ic-file-spreadsheet" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M8 13h2" />
+  <path d="M14 13h2" />
+  <path d="M8 17h2" />
+  <path d="M14 17h2" /></symbol><symbol id="ic-refresh" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+  <path d="M3 3v5h5" /></symbol><symbol id="ic-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+  <path d="M3 3v5h5" />
+  <path d="M12 7v5l4 2" /></symbol><symbol id="ic-calendar" viewBox="0 0 24 24"><path d="M8 2v4" />
+  <path d="M16 2v4" />
+  <rect width="18" height="18" x="3" y="4" rx="2" />
+  <path d="M3 10h18" />
+  <path d="M8 14h.01" />
+  <path d="M12 14h.01" />
+  <path d="M16 14h.01" />
+  <path d="M8 18h.01" />
+  <path d="M12 18h.01" />
+  <path d="M16 18h.01" /></symbol><symbol id="ic-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></symbol><symbol id="ic-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" />
+  <path d="m9 12 2 2 4-4" /></symbol><symbol id="ic-circle-x" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" />
+  <path d="m15 9-6 6" />
+  <path d="m9 9 6 6" /></symbol><symbol id="ic-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7" />
+  <path d="M19 12H5" /></symbol><symbol id="ic-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" />
+  <path d="M12 2v2" />
+  <path d="M12 20v2" />
+  <path d="m4.93 4.93 1.41 1.41" />
+  <path d="m17.66 17.66 1.41 1.41" />
+  <path d="M2 12h2" />
+  <path d="M20 12h2" />
+  <path d="m6.34 17.66-1.41 1.41" />
+  <path d="m19.07 4.93-1.41 1.41" /></symbol><symbol id="ic-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></symbol><symbol id="ic-folder" viewBox="0 0 24 24"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2" /></symbol><symbol id="ic-timer" viewBox="0 0 24 24"><line x1="10" x2="14" y1="2" y2="2" />
+  <line x1="12" x2="15" y1="14" y2="11" />
+  <circle cx="12" cy="14" r="8" /></symbol><symbol id="ic-list-checks" viewBox="0 0 24 24"><path d="m3 17 2 2 4-4" />
+  <path d="m3 7 2 2 4-4" />
+  <path d="M13 6h8" />
+  <path d="M13 12h8" />
+  <path d="M13 18h8" /></symbol><symbol id="ic-gauge" viewBox="0 0 24 24"><path d="m12 14 4-4" />
+  <path d="M3.34 19a10 10 0 1 1 17.32 0" /></symbol><symbol id="ic-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" />
+  <path d="M12 16v-4" />
+  <path d="M12 8h.01" /></symbol><symbol id="ic-sprout" viewBox="0 0 24 24"><path d="M7 20h10" />
+  <path d="M10 20c5.5-2.5.8-6.4 3-10" />
+  <path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z" />
+  <path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z" /></symbol><symbol id="ic-warehouse" viewBox="0 0 24 24"><path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z" />
+  <path d="M6 18h12" />
+  <path d="M6 14h12" />
+  <rect width="12" height="12" x="6" y="10" /></symbol><symbol id="ic-ruler" viewBox="0 0 24 24"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z" />
+  <path d="m14.5 12.5 2-2" />
+  <path d="m11.5 9.5 2-2" />
+  <path d="m8.5 6.5 2-2" />
+  <path d="m17.5 15.5 2-2" /></symbol><symbol id="ic-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" />
+  <path d="m21 21-4.3-4.3" /></symbol><symbol id="ic-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" /></symbol><symbol id="ic-building" viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+  <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+  <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+  <path d="M10 6h4" />
+  <path d="M10 10h4" />
+  <path d="M10 14h4" />
+  <path d="M10 18h4" /></symbol><symbol id="ic-save" viewBox="0 0 24 24"><path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
+  <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
+  <path d="M7 3v4a1 1 0 0 0 1 1h7" /></symbol><symbol id="ic-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" /></symbol><symbol id="ic-circle-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" />
+  <circle cx="12" cy="12" r="1" /></symbol></defs></svg>
+  
+
+  
+
+  <!-- Modal / Pantalla de Acceso Rápido y Bóveda Criptográfica -->
+  <!-- Contraseña común del cuaderno (la comprueba el Excel de Google Sheets) -->
+  <div id="modal-clave" class="auth-modal hidden">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="auth-logo"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-lock"></use></svg> </div>
+        <h2>Cuaderno de campo</h2>
+        <p>Escribe la contraseña común del cuaderno. Solo se pide una vez en cada móvil.</p>
+      </div>
+      <form id="form-clave" onsubmit="procesarClaveCuaderno(event)">
+        <div class="form-group" style="text-align: left; margin-bottom: 0.85rem;">
+          <label class="form-label" for="clave-cuaderno">Contraseña</label>
+          <input type="password" id="clave-cuaderno" class="form-input" autocomplete="current-password" required minlength="6">
+        </div>
+        <div id="clave-error" class="auth-error-msg hidden"></div>
+        <button type="submit" id="btn-clave" class="btn-submit-faena" style="width: 100%;">
+          <svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-unlock"></use></svg> Entrar
+        </button>
+      </form>
+    </div>
+  </div>
+  <div id="auth-modal" class="auth-modal hidden">
+    <div class="auth-card">
+      
+      <!-- Vista 1: Desbloqueo por PIN de Bóveda -->
+      <div id="vault-unlock-view">
+        <div class="auth-header">
+          <div class="auth-logo"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-lock"></use></svg> </div>
+          <h2>Bóveda Agrícola Privada</h2>
+          <p>Introduce tu PIN o Contraseña Maestra para descifrar el cuaderno de campo</p>
+        </div>
+        <form id="vault-unlock-form" onsubmit="procesarDesbloqueoPin(event)">
+          <div class="form-group" style="text-align: left; margin-bottom: 0.85rem;">
+            <label class="form-label" for="auth-pin-input">PIN / Clave de Acceso</label>
+            <input type="password" id="auth-pin-input" class="form-input" placeholder="Introduce el PIN" inputmode="numeric" autocomplete="current-password" required>
+          </div>
+          <div id="auth-pin-error" class="auth-error-msg hidden"></div>
+          <button type="submit" id="btn-submit-unlock" class="btn-submit-faena" style="width: 100%;">
+            <svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-unlock"></use></svg> Desbloquear Cuaderno
+          </button>
+        </form>
+        <div class="auth-footer" style="margin-top: 1.25rem;">
+          <p class="text-subtle">Cifrado de grado militar AES-256-GCM + PBKDF2</p>
+        </div>
+      </div>
+      <!-- Vista 2: Configuración Inicial de Seguridad (solo si no hay PIN activo) -->
+      <div id="vault-setup-view" class="hidden">
+        <div class="auth-header">
+          <div class="auth-logo"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-shield"></use></svg> ️</div>
+          <h2>Activar Bóveda Segura</h2>
+          <p>Define un PIN o Clave Maestra (mínimo 4 dígitos/caracteres) para blindar y cifrar las 30 parcelas y faenas:</p>
+        </div>
+        <form id="vault-setup-form" onsubmit="procesarCreacionPin(event)">
+          <div class="form-group" style="text-align: left; margin-bottom: 0.75rem;">
+            <label class="form-label" for="setup-pin-input">Nuevo PIN / Clave Maestra *</label>
+            <input type="password" id="setup-pin-input" class="form-input" placeholder="Mínimo 4 dígitos" required>
+          </div>
+          <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+            <label class="form-label" for="setup-pin-confirm">Confirmar PIN *</label>
+            <input type="password" id="setup-pin-confirm" class="form-input" placeholder="Repite el PIN" required>
+          </div>
+          <div id="setup-pin-error" class="auth-error-msg hidden"></div>
+          <button type="submit" class="btn-submit-faena" style="width: 100%;">
+            <svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-shield-check"></use></svg> Activar Cifrado y Guardar
+          </button>
+        </form>
+        <div class="auth-footer" style="margin-top: 1.25rem;">
+          <p class="text-subtle">Nadie sin esta clave podrá leer ni extraer los datos</p>
+        </div>
+      </div>
+      <!-- Vista 3: Selector de Operario (una vez descifrado) -->
+      <div id="vault-users-view" class="hidden">
+        <div class="auth-header">
+          <div class="auth-logo"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-tractor"></use></svg> </div>
+          <h2>Huertos Carlos</h2>
+          <p>Selecciona tu perfil de trabajo:</p>
+        </div>
+        <div id="usuarios-selector" class="users-grid">
+          <!-- Renderizado dinámico de los usuarios -->
+        </div>
+        <div class="auth-footer">
+          <p class="text-subtle">Sesión protegida y verificada con SHA-256</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Cabecera Principal -->
+  <header class="top-header">
+    <div class="header-container">
+      <div class="brand-area">
+        <div class="logo-badge"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-tractor"></use></svg> </div>
+        <div class="brand-titles">
+          <h1>Huertos Carlos</h1>
+          <p id="user-active-badge">Usuario: Carlos</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn-new-task" onclick="abrirNuevaFaena()" title="Añadir tarea o informe">
+          <span>+ Nueva Tarea</span>
+        </button>
+        <button class="btn-user-switch" onclick="cambiarUsuario()" title="Cambiar de operario">
+          <span id="user-avatar-btn"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-user"></use></svg> </span>
+        </button>
+        <button class="btn-user-switch btn-lock-header" onclick="bloquearCuadernoManual('manual')" title="Bloquear cuaderno (Cierre de seguridad)">
+          <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-lock"></use></svg> </span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- Barra de Navegación Ergonómica (5 Pestañas: Histórico, Diario, Huertos, Nueva, Resumen) -->
+  <nav class="nav-bar" id="bottom-nav">
+    <div class="nav-container">
+      <button class="nav-btn active" data-tab="tab-feed">
+        <span class="nav-icon"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-history"></use></svg> </span>
+        <span class="nav-label">Histórico</span>
+      </button>
+      <button class="nav-btn" data-tab="tab-devops">
+        <span class="nav-icon"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-bolt"></use></svg> </span>
+        <span class="nav-label">Diario</span>
+      </button>
+      <button class="nav-btn" data-tab="tab-parcelas">
+        <span class="nav-icon"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-citrus"></use></svg> </span>
+        <span class="nav-label">Huertos</span>
+      </button>
+      <button class="nav-btn" data-tab="tab-nueva">
+        <span class="nav-icon"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-pen"></use></svg> ️</span>
+        <span class="nav-label">Nueva</span>
+      </button>
+      <button class="nav-btn" data-tab="tab-resumen">
+        <span class="nav-icon"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-chart"></use></svg> </span>
+        <span class="nav-label">Resumen</span>
+      </button>
+    </div>
+  </nav>
+  <!-- Botón Flotante Ergonómico de Acción Rápida (Thumb Zone) para Móviles -->
+  <button class="mobile-fab" onclick="abrirNuevaFaena()" title="Registrar nueva tarea o informe" aria-label="Nueva Tarea">
+    <span class="fab-icon"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-plus"></use></svg> </span>
+    <span class="fab-label">Nueva</span>
+  </button>
+  <!-- Contenedor Principal -->
+  <main class="main-content">
+    <!-- Pestaña 1: Muro Histórico (Unificado de Tareas Realizadas e Informes de Estado) -->
+    <div id="tab-feed" class="tab-panel active">
+      <div class="section-head">
+        <h2>
+          <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-history"></use></svg> </span>
+          <span>Histórico de Tareas e Informes</span>
+        </h2>
+        <span class="badge-count" id="count-faenas">0 registros</span>
+      </div>
+      <!-- Filtros del Histórico: Huerto, Operario y Tipo (Tareas vs Informes) -->
+      <div class="filter-bar">
+        <select id="filtro-huerto-feed" class="form-select-sm" onchange="filtrarFeedPorHuerto(this.value)">
+          <option value="todos">Todos los huertos</option>
+        </select>
+        <select id="filtro-usuario-feed" class="form-select-sm" onchange="filtrarFeedPorUsuario(this.value)">
+          <option value="todos">Todos los operarios</option>
+        </select>
+        <select id="filtro-tipo-feed" class="form-select-sm" onchange="filtrarFeedPorTipo(this.value)">
+          <option value="todos">Todos los registros (Tareas e Informes)</option>
+          <option value="tarea">🛠️ Solo Tareas Realizadas</option>
+          <option value="informe">📝 Solo Informes de Estado</option>
+        </select>
+        <!-- Compatibilidad retroactiva oculta -->
+        <select id="filtro-plaga-feed" style="display:none;"><option value="todos"></option></select>
+      </div>
+      <div id="feed-container" class="feed-list">
+        <!-- Renderizado de partes y tareas cronológico unificado -->
+      </div>
+    </div>
+    <!-- Pestaña Informes (Integrada en Histórico; contenida oculta para retrocompatibilidad) -->
+    <div id="tab-informes" class="tab-panel hidden" style="display:none;">
+      <div id="informes-container"></div>
+    </div>
+    <!-- Pestaña 2: Trabajo Diario (Tablero DevOps Kanban con 3 Columnas) -->
+    <div id="tab-devops" class="tab-panel">
+      <div class="section-head">
+        <h2>
+          <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-bolt"></use></svg> </span>
+          <span>Trabajo Diario</span>
+        </h2>
+        <div class="section-head-actions">
+          <span class="badge-count" id="count-devops">0 tareas</span>
+          <button type="button" class="btn-toggle-all" onclick="toggleTodosLosMesesDevops()" title="Plegar o desplegar periodos">
+            <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-chevrons"></use></svg> ️ Plegar / Desplegar</span>
+          </button>
+        </div>
+      </div>
+      <!-- Filtros del Tablero DevOps: Huerto, Operario y Periodo -->
+      <div class="filter-bar">
+        <select id="filtro-huerto-devops" class="form-select-sm" onchange="filtrarDevopsPorHuerto(this.value)">
+          <option value="todos">Todos los huertos</option>
+        </select>
+        <select id="filtro-usuario-devops" class="form-select-sm" onchange="filtrarDevopsPorUsuario(this.value)">
+          <option value="todos">Todos los operarios</option>
+        </select>
+        <select id="filtro-periodo-devops" class="form-select-sm" onchange="filtrarDevopsPorPeriodo(this.value)">
+          <option value="todos">Todos los periodos</option>
+        </select>
+      </div>
+      <div id="devops-kanban-container" class="feed-container-kanban">
+        <!-- Renderizado dinámico del tablero DevOps Kanban de 3 columnas (Pendientes, En curso, Finalizadas) -->
+      </div>
+    </div>
+    <!-- Pestaña 3: Catálogo de Huertos / Parcelas (Baseline & Fichas) -->
+    <div id="tab-parcelas" class="tab-panel">
+      <div class="section-head">
+        <h2>
+          <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-citrus"></use></svg> </span>
+          <span>Fincas y Parcelas de Carlos</span>
+        </h2>
+      </div>
+      <div id="parcelas-grid" class="parcelas-grid">
+        <!-- Renderizado de fichas técnicas de huertos -->
+      </div>
+    </div>
+    <!-- Pestaña 5: Formulario Rápido de Registro (Faena o Informe) -->
+    <div id="tab-nueva" class="tab-panel">
+      <div class="card form-card">
+        <h3 id="form-titulo-registro">
+          <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-pen"></use></svg> ️</span>
+          <span id="form-titulo-texto">Parte de Tarea en Campo</span>
+        </h3>
+        <p class="form-subtitle" id="form-subtitulo-texto">Registra en 1 minuto la tarea realizada o añade un informe del estado del huerto.</p>
+        <form id="form-faena" onsubmit="guardarNuevaFaena(event)">
+          <!-- Selector: Tarea Realizada vs Informe de Estado -->
+          <div class="form-group" style="margin-bottom:1.25rem;">
+            <label class="form-label">¿Qué vas a registrar? *</label>
+            <div class="radio-chips-grid" id="tipo-registro-selector">
+              <label class="radio-chip chip-pendientes active" id="chip-tipo-faena">
+                <input type="radio" name="registro-tipo" value="faena" checked onchange="cambiarTipoRegistroFormulario('faena')">
+                <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-tractor"></use></svg> 🛠️ Tarea Realizada</span>
+              </label>
+              <label class="radio-chip chip-finalizadas" id="chip-tipo-informe">
+                <input type="radio" name="registro-tipo" value="informe" onchange="cambiarTipoRegistroFormulario('informe')">
+                <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-note"></use></svg> 📝 Informe de Estado</span>
+              </label>
+            </div>
+          </div>
+          <!-- Huerto & Fecha -->
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Huerto / Parcela *</label>
+              <select id="faena-huerto" class="form-select" required>
+                <!-- Opciones de huertos sin paréntesis -->
+              </select>
+            </div>
+            <div class="form-group" id="grupo-subparcela" style="display:none;">
+              <label class="form-label" for="faena-subparcela">Lugar exacto</label>
+              <select id="faena-subparcela" class="form-select">
+                <option value="Tot">Tot (todo el huerto)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Fecha *</label>
+              <input type="date" id="faena-fecha" class="form-input" required>
+            </div>
+          </div>
+          <!-- Estado interno predeterminado (las tareas nacen finalizadas, las pendientes se generan desde informes) -->
+          <input type="hidden" name="faena-estado" value="Finalizadas">
+
+          <!-- Operarios que han hecho la tarea / redactan el informe (Multi-selección) -->
+          <div class="form-group">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
+              <label class="form-label" style="margin-bottom:0;">Operarios Participantes *</label>
+              <span class="text-subtle" style="font-size:0.75rem;">(Permite seleccionar varios)</span>
+            </div>
+            <div id="operarios-chips" class="chip-selector">
+              <!-- Chips de todos los 10 operarios multi-select -->
+            </div>
+          </div>
+          <!-- Tipo de Tarea Principal (Visible en modo Tarea) -->
+          <div class="form-group" id="grupo-tipo-faena">
+            <label class="form-label">Tipo de Tarea *</label>
+            <div class="task-types-grid" id="tipo-faena-chips">
+              <button type="button" class="chip-btn active" data-val="Tratamiento"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-flask"></use></svg> Tratamiento</button>
+              <button type="button" class="chip-btn" data-val="Revisión de riego"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-drop"></use></svg> Revisión de riego</button>
+              <button type="button" class="chip-btn" data-val="Fertirrigación / Abonado"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-sprout"></use></svg> Fertirrigación / Abonado</button>
+              <button type="button" class="chip-btn" data-val="Triturado de hierba / Herbicida"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-wheat"></use></svg> Triturado de hierba / Herbicida</button>
+              <button type="button" class="chip-btn" data-val="Recolección"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-citrus"></use></svg> Recolección</button>
+              <button type="button" class="chip-btn" data-val="Poda y Deschuponado"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-scissors"></use></svg> Poda y Deschuponado</button>
+            </div>
+          </div>
+          <!-- Bloque de Químicos / Tratamientos (si aplica) -->
+          <div class="sub-card" id="seccion-quimicos">
+            <h4 class="sub-card-title"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-flask"></use></svg> Productos / Abonos Aplicados (Opcional)</h4>
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label">Producto / Materia Activa</label>
+                <input type="text" id="faena-quimico-producto" class="form-input" placeholder="Ej: Spintor, Cobre, Abono 15-15-15, Aceite...">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Dosis / Gasto (L o kg / cuba)</label>
+                <input type="text" id="faena-quimico-dosis" class="form-input" placeholder="Ej: 200 cc/hl o 1000L de cuba">
+              </div>
+            </div>
+          </div>
+          <!-- TICK MARKS: Plagas Detectadas -->
+          <div class="sub-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
+              <h4 class="sub-card-title" style="margin:0;"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-larva"></use></svg> Control de Plagas (Tick marks rápidos)</h4>
+              <label class="checkbox-line" style="font-size:0.8rem; margin:0;">
+                <input type="checkbox" id="check-sin-plagas-form" onchange="toggleSinPlagasFormulario(this.checked)">
+                <strong><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-check-circle"></use></svg> Sin plagas (Limpio)</strong>
+              </label>
+            </div>
+            <!-- Selector presencia vs daños para informes -->
+            <div id="plagas-tipo-afectacion" style="margin-bottom:0.6rem; font-size:0.8rem; display:flex; gap:1rem; align-items:center;">
+              <span class="text-subtle">Afectación observada:</span>
+              <label><input type="radio" name="plagas-afectacion" value="presencia" checked> Presencia activa (viva)</label>
+              <label><input type="radio" name="plagas-afectacion" value="danos"> Solo daños (sin plaga viva)</label>
+            </div>
+            <div class="tickmarks-grid" id="plagas-tickmarks">
+              <label class="tickmark-item">
+                <input type="checkbox" value="Pulgón" name="plagas" onchange="alCambiarPlagaFormulario()">
+                <span class="tickmark-box"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-bug"></use></svg> Pulgón</span>
+              </label>
+              <label class="tickmark-item">
+                <input type="checkbox" value="Ácaro de Texas" name="plagas" onchange="alCambiarPlagaFormulario()">
+                <span class="tickmark-box"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-bug"></use></svg> Ácaro de Texas</span>
+              </label>
+              <label class="tickmark-item">
+                <input type="checkbox" value="Serpeta" name="plagas" onchange="alCambiarPlagaFormulario()">
+                <span class="tickmark-box"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-bug"></use></svg> Serpeta</span>
+              </label>
+              <label class="tickmark-item">
+                <input type="checkbox" value="Trip" name="plagas" onchange="alCambiarPlagaFormulario()">
+                <span class="tickmark-box"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-bug"></use></svg> Trip</span>
+              </label>
+              <label class="tickmark-item">
+                <input type="checkbox" value="Mosca de la fruta" name="plagas" onchange="alCambiarPlagaFormulario()">
+                <span class="tickmark-box"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-mosca"></use></svg> Mosca de la fruta</span>
+              </label>
+              <label class="tickmark-item">
+                <input type="checkbox" value="Mosca blanca" name="plagas" onchange="alCambiarPlagaFormulario()">
+                <span class="tickmark-box"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-info"></use></svg> Mosca blanca</span>
+              </label>
+              <label class="tickmark-item">
+                <input type="checkbox" value="Araña roja" name="plagas" onchange="alCambiarPlagaFormulario()">
+                <span class="tickmark-box"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-bug"></use></svg> Araña roja</span>
+              </label>
+              <label class="tickmark-item">
+                <input type="checkbox" value="Cotonet" name="plagas" onchange="alCambiarPlagaFormulario()">
+                <span class="tickmark-box"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-cucaracha"></use></svg> Cotonet</span>
+              </label>
+              <label class="tickmark-item">
+                <input type="checkbox" value="Piojo rojo" name="plagas" onchange="alCambiarPlagaFormulario()">
+                <span class="tickmark-box"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-bug"></use></svg> Piojo rojo</span>
+              </label>
+              <label class="tickmark-item">
+                <input type="checkbox" value="Minador" name="plagas" onchange="alCambiarPlagaFormulario()">
+                <span class="tickmark-box"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-larva"></use></svg> Minador</span>
+              </label>
+            </div>
+          </div>
+          <!-- Hierba en dos zonas: Tira y Frau (Carlos, 08/10/2026) -->
+          <div class="sub-card">
+            <h4 class="sub-card-title"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-leaf"></use></svg> Hierba</h4>
+            <p class="text-subtle" style="margin:0.5rem 0 0.25rem;"><strong>Tira (línea de árboles)</strong></p>
+            <div class="radio-chips-grid" id="hierba-tira-selector">
+              <label class="radio-chip">
+                <input type="radio" name="hierba-tira" value="Sin hierba" checked>
+                <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-check-circle"></use></svg> Limpio</span>
+              </label>
+              <label class="radio-chip">
+                <input type="radio" name="hierba-tira" value="Poca hierba">
+                <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-clock"></use></svg> Poca</span>
+              </label>
+              <label class="radio-chip">
+                <input type="radio" name="hierba-tira" value="Mucha hierba">
+                <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-circle-x"></use></svg> Mucha</span>
+              </label>
+            </div>
+            <p class="text-subtle" style="margin:0.5rem 0 0.25rem;"><strong>Frau (calle entre hileras)</strong></p>
+            <div class="radio-chips-grid" id="hierba-frau-selector">
+              <label class="radio-chip">
+                <input type="radio" name="hierba-frau" value="Sin hierba" checked>
+                <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-check-circle"></use></svg> Limpio</span>
+              </label>
+              <label class="radio-chip">
+                <input type="radio" name="hierba-frau" value="Poca hierba">
+                <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-clock"></use></svg> Poca</span>
+              </label>
+              <label class="radio-chip">
+                <input type="radio" name="hierba-frau" value="Mucha hierba">
+                <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-circle-x"></use></svg> Mucha</span>
+              </label>
+            </div>
+          </div>
+          <!-- FOTOS (solo informes): se guardan en Google Drive, nunca en el Excel -->
+          <div class="sub-card" id="seccion-fotos-form" style="display:none;">
+            <h4 class="sub-card-title">Fotos</h4>
+            <p class="text-subtle" style="margin:0 0 0.5rem;">Hasta 6 fotos. Se guardan en Google Drive, no en el Excel.</p>
+            <input type="file" id="faena-fotos" accept="image/*" multiple class="form-input" onchange="alCambiarFotosFormulario()">
+            <div id="fotos-preview" class="text-subtle" style="margin-top:0.4rem;"></div>
+          </div>
+          <!-- RIEGO -->
+          <div class="sub-card" id="seccion-riego-form">
+            <h4 class="sub-card-title"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-drop"></use></svg> Riego</h4>
+            <div class="radio-chips-grid" id="riego-form-selector">
+              <label class="radio-chip">
+                <input type="radio" name="form-riego" value="correcto" checked>
+                <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-check-circle"></use></svg> Correcto</span>
+              </label>
+              <label class="radio-chip">
+                <input type="radio" name="form-riego" value="revisar">
+                <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-clock"></use></svg> Revisión necesaria</span>
+              </label>
+              <label class="radio-chip">
+                <input type="radio" name="form-riego" value="fuga-leve">
+                <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-circle-dot"></use></svg> Fuga Leve</span>
+              </label>
+              <label class="radio-chip">
+                <input type="radio" name="form-riego" value="fuga-grave">
+                <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-warning"></use></svg> Fuga Grave</span>
+              </label>
+              <label class="radio-chip">
+                <input type="radio" name="form-riego" value="sin-agua">
+                <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-circle-x"></use></svg> Sin Agua</span>
+              </label>
+            </div>
+          </div>
+          <!-- TRABAJOS PENDIENTES VINCULADOS (Solo para Informes) -->
+          <div class="sub-card hidden" id="seccion-informe-pendientes">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem; flex-wrap:wrap; gap:0.5rem;">
+              <h4 class="sub-card-title" style="margin:0;"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-clipboard"></use></svg> Tareas Pendientes a Generar</h4>
+              <button type="button" class="btn-secondary-sm" onclick="anadirTareaPendienteFormulario()">+ Añadir Tarea Pendiente</button>
+            </div>
+            <p class="text-subtle" style="font-size:0.8rem; margin-bottom:0.75rem;">
+              Las tareas añadidas aquí nacerán en estado "Pendiente" en el Diario y quedarán vinculadas a este informe hasta completarse.
+            </p>
+            <div id="lista-tareas-pendientes-form" style="display:flex; flex-direction:column; gap:0.6rem;">
+              <!-- Tarjetas dinámicas de tareas pendientes -->
+            </div>
+          </div>
+          <!-- Comentarios / Observaciones -->
+          <div class="form-group">
+            <label class="form-label" id="label-faena-notas">Comentarios / Observaciones</label>
+            <textarea id="faena-notas" class="form-textarea" rows="3" placeholder="Ej: Los árboles están brotando muy bien..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit-faena" id="btn-submit-registro">
+            <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-save"></use></svg> Guardar Registro</span>
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- Pestaña 4: Resumen & Control de Plagas -->
+    <div id="tab-resumen" class="tab-panel">
+      <div class="card">
+        <h3>
+          <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-chart"></use></svg> </span>
+          <span>Semáforo de Plagas & Huertos Más Recientes</span>
+        </h3>
+        <p class="text-subtle" style="margin-bottom:1rem;">Visualiza de un vistazo qué huertos necesitan atención urgente o desbroce.</p>
+        <div id="resumen-semaforo" class="semaforo-grid">
+          <!-- Renderizado dinámico de estado por huerto -->
+        </div>
+      </div>
+      <!-- Bóveda Criptográfica y Estado de Seguridad -->
+      <div class="card" style="margin-top:1.5rem; border: 1px solid var(--accent-linea);">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem;">
+          <h3 style="margin:0;">
+            <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-shield"></use></svg> ️</span>
+            <span>Bóveda Criptográfica & Privacidad</span>
+          </h3>
+          <span class="badge-count" style="background:var(--accent-fondo); color:var(--accent-fuerte); border:1px solid var(--accent-linea);">
+            AES-256-GCM
+          </span>
+        </div>
+        <p class="text-subtle" style="margin-bottom:1rem;">
+          Todos los datos de huertos, propietarios, partes y químicos están cifrados en reposo. Nadie ajeno puede extraer la información sin el PIN maestro.
+        </p>
+        <div class="boveda-stats-grid">
+          <div class="boveda-stat-box">
+            <div class="boveda-stat-title">Estado de Cifrado</div>
+            <div class="boveda-stat-val" id="vault-status-badge"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-shield-check"></use></svg> AES-256 Activo</div>
+          </div>
+          <div class="boveda-stat-box">
+            <div class="boveda-stat-title">Control de Acceso</div>
+            <div class="boveda-stat-val" id="pin-status-badge">PIN Protegido</div>
+          </div>
+          <div class="boveda-stat-box">
+            <div class="boveda-stat-title">Auto-bloqueo en Campo</div>
+            <div class="boveda-stat-val"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-timer"></use></svg> ️ 10 min Inactividad</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:1rem;">
+          <button class="btn-secondary" style="border-color:var(--peligro); color:var(--peligro);" onclick="bloquearCuadernoManual('manual')">
+            <svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-lock"></use></svg> Bloquear Cuaderno Ahora
+          </button>
+          <button class="btn-secondary" id="btn-gestionar-pin" onclick="gestionarPinSeguridad()">
+            <svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-key"></use></svg> Cambiar PIN de Acceso
+          </button>
+          <button class="btn-secondary" onclick="verificarIntegridadManual()">
+            <svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-shield"></use></svg> ️ Verificar Integridad SHA-256
+          </button>
+        </div>
+      </div>
+      <!-- Exportación e Importación con Autorización PIN -->
+      <div class="card" style="margin-top:1.5rem;">
+        <h3>
+          <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-folder"></use></svg> </span>
+          <span>Copias de Seguridad & Exportación Segura</span>
+        </h3>
+        <p class="text-subtle" style="margin-bottom:1rem;">
+          Por seguridad, la descarga o restauración de datos sensibles requiere confirmación de tu PIN.
+        </p>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          <button class="btn-secondary" onclick="exportarDatosSeguros()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-download"></use></svg> Descargar JSON (Requiere PIN)</button>
+          <button class="btn-secondary" onclick="exportarDatosSegurosCsv()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-chart"></use></svg> Exportar CSV (Requiere PIN)</button>
+          <button class="btn-secondary" style="border-color:var(--accent); color:var(--accent-fuerte);" onclick="exportarCopiaCifradaBoveda()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-shield-check"></use></svg> Exportar Bóveda Cifrada (.hcenc)</button>
+          <button class="btn-secondary" onclick="document.getElementById('import-file').click()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-folder"></use></svg> Cargar Copia / Bóveda</button>
+          <button class="btn-secondary" style="border-color:var(--aviso); color:var(--aviso);" onclick="restablecerDatosExcel()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-refresh"></use></svg> Restaurar Excel de Carlos</button>
+          <input type="file" id="import-file" style="display:none;" onchange="importarDatos(event)" accept=".json,.csv,.hcenc">
+        </div>
+      </div>
+      <div class="card" style="margin-top:1rem;">
+        <h3 style="margin-top:0;">Excel de Google Sheets</h3>
+        <p class="text-subtle" style="margin-bottom:0.5rem;">
+          Lo que se apunta en la app se guarda en el Excel y lo que se escribe en el Excel aparece en la app
+          (al abrir y cada 2 minutos). Sin cobertura se guarda en el móvil y se envía al volver la red. Si hay choque, manda el Excel.
+        </p>
+        <p style="margin-bottom:1rem;"><strong>Estado:</strong> <span id="sheets-estado">Sin conectar a Google Sheets</span></p>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          <button class="btn-secondary" onclick="sincronizarAhora()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-refresh"></use></svg> Sincronizar ahora</button>
+          <button class="btn-secondary" onclick="configurarEnlaceSheets()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-folder"></use></svg> Enlace del Excel</button>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Detalle de Histórico de una Parcela -->
+    <div id="modal-detalle-parcela" class="modal-overlay hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div>
+            <h3 id="modal-parcela-nombre">Huerto</h3>
+            <p id="modal-parcela-baseline" class="modal-sub"></p>
+          </div>
+          <button class="btn-close" onclick="cerrarModalParcela()">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="parcela-specs-grid" id="modal-parcela-specs">
+            <!-- Especificaciones baseline -->
+          </div>
+          <div id="modal-parcela-subparcelas">
+            <!-- Desglose de Subparcelas con patrón, variedad, marco -->
+          </div>
+          <div id="modal-parcela-analisis">
+            <!-- Análisis de Fertilidad y Suelo -->
+          </div>
+          <h4 style="margin: 1.25rem 0 0.5rem 0; font-size:1rem;"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-history"></use></svg> Histórico de Tareas e Informes</h4>
+          <div id="modal-parcela-historial" class="parcela-historial-list">
+            <!-- Lista histórica de tratamientos en este huerto -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Crear Huerto Nuevo -->
+    <div id="modal-crear-huerto" class="modal-overlay hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Añadir Nuevo Huerto / Parcela</h3>
+          <button class="btn-close" onclick="cerrarModalCrearHuerto()">✕</button>
+        </div>
+        <div class="modal-body">
+          <form onsubmit="guardarNuevoHuerto(event)">
+            <div class="form-group">
+              <label class="form-label">Nombre del Huerto *</label>
+              <input type="text" id="nuevo-huerto-nombre" class="form-input" required placeholder="Ej: Huerto El Bovalar">
+            </div>
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label">Superficie (Hanegadas / Ha)</label>
+                <input type="text" id="nuevo-huerto-superficie" class="form-input" placeholder="Ej: 12 Hanegadas">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Variedad</label>
+                <input type="text" id="nuevo-huerto-variedad" class="form-input" placeholder="Ej: Clemenules, Navel...">
+              </div>
+            </div>
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label">Patrón</label>
+                <input type="text" id="nuevo-huerto-patron" class="form-input" placeholder="Ej: Citrange Carrizo">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Marco de Plantación</label>
+                <input type="text" id="nuevo-huerto-marco" class="form-input" placeholder="Ej: 6 x 4 m">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Ubicación / Notas</label>
+              <input type="text" id="nuevo-huerto-ubicacion" class="form-input" placeholder="Término municipal o partida">
+            </div>
+            <button type="submit" class="btn-submit-faena" style="margin-top:1rem;">Guardar Huerto</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Corregir / Editar Resumen de Parcela -->
+    <div id="modal-editar-resumen" class="modal-overlay hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div>
+            <h3 id="modal-resumen-titulo">Editar Estado del Huerto</h3>
+            <p class="modal-sub">Se guardará como un informe fechado con observaciones estructuradas en la cronología.</p>
+          </div>
+          <button class="btn-close" onclick="cerrarModalEditarResumen()">✕</button>
+        </div>
+        <div class="modal-body">
+          <form onsubmit="guardarCorreccionResumen(event)">
+            <input type="hidden" id="resumen-edit-parcela-id">
+            <div class="form-group" style="margin-bottom:0.75rem;">
+              <label class="form-label">Fecha del Informe / Observación *</label>
+              <input type="date" id="resumen-edit-fecha" class="form-input" required>
+            </div>
+            <!-- Apartado 1: Plagas -->
+            <div class="sub-card">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
+                <h4 class="sub-card-title" style="margin:0;"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-larva"></use></svg> 1. Control de Plagas</h4>
+                <button type="button" class="btn-secondary-sm" onclick="anadirFilaPlagaResumen()">+ Añadir Plaga</button>
+              </div>
+              <label class="checkbox-line" style="margin-bottom:0.6rem;">
+                <input type="checkbox" id="resumen-check-sin-plagas" onchange="toggleSinPlagasResumen(this.checked)">
+                <strong><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-check-circle"></use></svg> Sin plagas detectadas (Limpio)</strong>
+              </label>
+              <div id="resumen-plagas-lista" style="display:flex; flex-direction:column; gap:0.5rem;">
+                <!-- Filas de plagas editables: nombre, presencia, daños -->
+              </div>
+            </div>
+            <!-- Apartado 2: Hierba (Sin hierba, Poca hierba, Mucha hierba) -->
+            <div class="sub-card">
+              <h4 class="sub-card-title"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-leaf"></use></svg> 2. Nivel de Hierba</h4>
+              <p class="text-subtle" style="margin:0.5rem 0 0.25rem;"><strong>Tira (línea de árboles)</strong></p>
+              <div class="radio-chips-grid" id="resumen-hierba-tira-selector">
+                <label class="radio-chip">
+                  <input type="radio" name="resumen-hierba-tira" value="limpio" checked>
+                  <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-check-circle"></use></svg> Limpio</span>
+                </label>
+                <label class="radio-chip">
+                  <input type="radio" name="resumen-hierba-tira" value="baja">
+                  <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-clock"></use></svg> Poca</span>
+                </label>
+                <label class="radio-chip">
+                  <input type="radio" name="resumen-hierba-tira" value="alta">
+                  <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-circle-x"></use></svg> Mucha</span>
+                </label>
+              </div>
+              <p class="text-subtle" style="margin:0.5rem 0 0.25rem;"><strong>Frau (calle entre hileras)</strong></p>
+              <div class="radio-chips-grid" id="resumen-hierba-frau-selector">
+                <label class="radio-chip">
+                  <input type="radio" name="resumen-hierba-frau" value="limpio" checked>
+                  <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-check-circle"></use></svg> Limpio</span>
+                </label>
+                <label class="radio-chip">
+                  <input type="radio" name="resumen-hierba-frau" value="baja">
+                  <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-clock"></use></svg> Poca</span>
+                </label>
+                <label class="radio-chip">
+                  <input type="radio" name="resumen-hierba-frau" value="alta">
+                  <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-circle-x"></use></svg> Mucha</span>
+                </label>
+              </div>
+            </div>
+            <!-- Apartado 3: Riego -->
+            <div class="sub-card">
+              <h4 class="sub-card-title"><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-drop"></use></svg> 3. Riego</h4>
+              <div class="radio-chips-grid" id="resumen-riego-selector">
+                <label class="radio-chip">
+                  <input type="radio" name="resumen-riego" value="correcto" checked>
+                  <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-check-circle"></use></svg> Correcto</span>
+                </label>
+                <label class="radio-chip">
+                  <input type="radio" name="resumen-riego" value="revisar">
+                  <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-clock"></use></svg> Revisión necesaria</span>
+                </label>
+                <label class="radio-chip">
+                  <input type="radio" name="resumen-riego" value="fuga-leve">
+                  <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-circle-dot"></use></svg> Fuga Leve</span>
+                </label>
+                <label class="radio-chip">
+                  <input type="radio" name="resumen-riego" value="fuga-grave">
+                  <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-warning"></use></svg> Fuga Grave</span>
+                </label>
+                <label class="radio-chip">
+                  <input type="radio" name="resumen-riego" value="sin-agua">
+                  <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-circle-x"></use></svg> Sin Agua</span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group" style="margin-top:0.75rem;">
+              <label class="form-label">Notas de la Corrección / Contexto</label>
+              <textarea id="resumen-edit-notas" class="form-textarea" rows="2" placeholder="Observaciones de esta actualización cronológica..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit-faena" style="margin-top:1rem;">
+              <svg class="ic" aria-hidden="true" focusable="false"><use href="#ic-save"></use></svg> Guardar Corrección en Histórico
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div id="toast-container" class="toast-container"></div>
+  <!-- Scripts de la Aplicación -->
+  <script src="security.js?v=8"></script>
+  <script src="datos_huertos.js?v=7"></script>
+  <script src="campo.js?v=8"></script>
+  <script src="excel-parser.js?v=2"></script>
+  <script src="sincro-sheets.js?v=2"></script>
+  <script src="app.js?v=11"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').then((reg) => {
+          reg.update();
+        }).catch((err) => {
+          console.warn('SW registration:', err);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
