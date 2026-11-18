@@ -1,0 +1,243 @@
+/* Hallmark · shape: app screen · genre: modern-minimal · theme: Furrow (deal manual, app scope) · redesign: full
+ * nav: barra superior con pestañas, barra inferior en movil · signature: el libro de registro rayado, fechas en mono · states: lleno, vacio, error, carga
+ * axes: light/grotesk-sans/warm · posture: committed · contrast: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P5 H4 E4 S5 R4 V5 · weakest: E, faltaba densidad de herramienta; se resolvio con filas rayadas, cifras en mono y teclas moldeadas */
+
+/* ================================================================
+   FURROW — sistema de tokens del cuaderno de campo
+   Papel manila calido, tinta casi negra, mandarina como senal,
+   verde para lo que esta al dia. Sin degradados ni adornos.
+   ================================================================ */
+
+@font-face {
+  font-family: 'Red Hat Display';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('assets/fonts/redhat-display-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url('assets/fonts/redhat-text-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Red Hat Mono';
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url('assets/fonts/redhat-mono-latin.woff2') format('woff2');
+}
+
+:root {
+  color-scheme: light;
+
+  /* Escala de espacio */
+  --space-3xs: 2px;
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 144px;
+
+  /* Escala de texto (app: razon 1.125, sin titulares fluidos) */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.266rem;
+  --text-2xl: 1.424rem;
+  --text-3xl: 1.602rem;
+  --text-display-s: 1.802rem;
+  --text-display: 2.027rem;
+  --text-section: 1.424rem;
+  --text-title: 1.125rem;
+  --text-lead: 1.125rem;
+
+  /* Papel y tinta */
+  --color-paper: oklch(96% 0.011 85);
+  --color-paper-2: oklch(99.5% 0.005 85);
+  --color-paper-3: oklch(92% 0.016 85);
+  --color-ink: oklch(18% 0.006 60);
+  --color-ink-2: oklch(28% 0.008 60);
+  --color-muted: oklch(44% 0.012 60);
+  --color-rule: oklch(88% 0.013 85);
+  --color-rule-2: oklch(74% 0.014 80);
+  --color-sheet: oklch(99.3% 0.004 85);
+
+  /* Senal y estados */
+  --color-accent: oklch(70% 0.19 40);
+  --color-accent-deep: oklch(62% 0.17 40);
+  --color-accent-ink: oklch(18% 0.006 60);
+  --color-accent-soft: oklch(91% 0.05 50);
+  --color-focus: oklch(55% 0.19 40);
+  --color-green: oklch(48% 0.11 150);
+  --color-green-soft: oklch(92% 0.04 150);
+  --color-error: oklch(48% 0.16 28);
+  --color-error-soft: oklch(94% 0.035 28);
+  --color-warning: oklch(45% 0.12 65);
+  --color-warning-soft: oklch(93% 0.05 75);
+  --color-info: oklch(46% 0.07 235);
+  --color-info-soft: oklch(93% 0.02 235);
+  --color-warning-line: oklch(74% 0.09 70);
+  --color-error-line: oklch(74% 0.09 28);
+  --color-info-line: oklch(74% 0.05 235);
+
+  /* Superficies y velos */
+  --color-glint: oklch(100% 0 0 / 0.55);
+  --color-velo: oklch(18% 0.006 60 / 0.66);
+
+  /* Tipografia local (OFL) */
+  --font-display: 'Red Hat Display', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Red Hat Text', ui-sans-serif, system-ui, sans-serif;
+  --font-outlier: 'Red Hat Mono', ui-monospace, monospace;
+
+  /* Radios y reglas */
+  --radius-xs: 3px;
+  --radius-sm: 6px;
+  --radius-card: 10px;
+  --radius-entry: 14px;
+  --radius-pill: 6px;
+  --rule-hair: 1px;
+  --r-xs: var(--radius-xs);
+  --r-sm: var(--radius-sm);
+  --r-md: var(--radius-card);
+  --r-lg: var(--radius-entry);
+  --r-full: 999px;
+
+  /* Sombras: solo el papel levantado y los dialogos */
+  --shadow-card: 0 1px 2px oklch(18% 0.006 60 / 0.08), 0 14px 28px -16px oklch(18% 0.006 60 / 0.28);
+  --shadow-lift: 0 1px 1px oklch(18% 0.006 60 / 0.1), 0 2px 4px -1px oklch(18% 0.006 60 / 0.1), 0 24px 44px -20px oklch(18% 0.006 60 / 0.42);
+  --sombra-1: var(--shadow-card);
+  --sombra-2: var(--shadow-card);
+  --sombra-3: var(--shadow-lift);
+
+  /* Movimiento */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+  --mov-rapido: var(--dur-micro);
+  --mov-medio: var(--dur-short);
+  --curva: var(--ease-out);
+
+  /* Medidas de campo */
+  --toque-min: 48px;
+  --nav-alto: 64px;
+  --container: 1360px;
+  --ancho-max: var(--container);
+  --gutter: 32px;
+  --gap-columns: 24px;
+  --section-gap-s: 48px;
+  --section-gap: 64px;
+  --section-gap-l: 96px;
+
+  /* Niveles */
+  --z-base: 1;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-sticky-nav: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+
+  /* Nombres en espanol usados por el HTML y el JS */
+  --paper: var(--color-paper);
+  --paper-2: var(--color-paper-2);
+  --paper-3: var(--color-paper-3);
+  --linea: var(--color-rule);
+  --linea-fuerte: var(--color-rule-2);
+  --ink: var(--color-ink);
+  --ink-2: var(--color-ink-2);
+  --ink-3: var(--color-muted);
+  --accent: var(--color-accent);
+  --accent-fuerte: var(--color-green);
+  --accent-tinta: var(--color-accent-ink);
+  --accent-fondo: var(--color-accent-soft);
+  --accent-linea: var(--color-accent-deep);
+  --aviso: var(--color-warning);
+  --aviso-fondo: var(--color-warning-soft);
+  --aviso-linea: var(--color-warning-line);
+  --peligro: var(--color-error);
+  --peligro-fondo: var(--color-error-soft);
+  --peligro-linea: var(--color-error-line);
+  --info: var(--color-info);
+  --info-fondo: var(--color-info-soft);
+  --info-linea: var(--color-info-line);
+  --fuente-ui: var(--font-body);
+  --fuente-titular: var(--font-display);
+  --fuente-mono: var(--font-outlier);
+
+  /* Compatibilidad con estilos en linea antiguos */
+  --bg-card: var(--color-paper-2);
+  --bg-surface: var(--color-paper);
+  --border: var(--color-rule);
+  --border-color: var(--color-rule-2);
+  --warning: var(--color-warning);
+  --text-muted: var(--color-muted);
+  --text-subtle: var(--color-muted);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --color-paper: oklch(18% 0.008 85);
+    --color-paper-2: oklch(22% 0.01 85);
+    --color-paper-3: oklch(26% 0.012 85);
+    --color-ink: oklch(94% 0.008 85);
+    --color-ink-2: oklch(82% 0.01 85);
+    --color-muted: oklch(68% 0.012 85);
+    --color-rule: oklch(32% 0.012 85);
+    --color-rule-2: oklch(48% 0.014 82);
+    --color-sheet: oklch(24% 0.008 85);
+
+    --color-accent: oklch(72% 0.18 40);
+    --color-accent-deep: oklch(66% 0.17 40);
+    --color-accent-ink: oklch(16% 0.006 60);
+    --color-accent-soft: oklch(30% 0.06 45);
+    --color-focus: oklch(75% 0.17 40);
+    --color-green: oklch(72% 0.1 150);
+    --color-green-soft: oklch(30% 0.04 150);
+    --color-error: oklch(72% 0.14 28);
+    --color-error-soft: oklch(27% 0.05 28);
+    --color-warning: oklch(78% 0.12 70);
+    --color-warning-soft: oklch(28% 0.05 70);
+    --color-info: oklch(78% 0.07 235);
+    --color-info-soft: oklch(27% 0.03 235);
+    --color-warning-line: oklch(55% 0.08 70);
+    --color-error-line: oklch(52% 0.1 28);
+    --color-info-line: oklch(52% 0.05 235);
+
+    --color-glint: oklch(100% 0 0 / 0.12);
+    --color-velo: oklch(8% 0.006 60 / 0.72);
+
+    --shadow-card: 0 1px 2px oklch(0% 0 0 / 0.4);
+    --shadow-lift: 0 1px 2px oklch(0% 0 0 / 0.5), 0 24px 44px -20px oklch(0% 0 0 / 0.6);
+    --sombra-1: var(--shadow-card);
+    --sombra-2: var(--shadow-card);
+    --sombra-3: var(--shadow-lift);
+  }
+}
+
+@media (max-width: 60rem) {
+  :root {
+    --gutter: 20px;
+    --gap-columns: 16px;
+  }
+}
+
+@media (max-width: 40rem) {
+  :root {
+    --gutter: 16px;
+  }
+}
